@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="jumbotron">
+
+        <p> <%= @message %> </p>
+
+        <article>
+            <header>
+                <h2><%= @recipe.name %></h2>
+                <%= imagem(@recipe, 150) %>
+            </header>
+
+            <p>
+            <%=  @recipe.kind %>
+            </p>
+            <p>
+            <%=  @recipe.stuff %>
+            </p>
+            <p>
+                <%= formata_caloria(@recipe) %>
+            </p>
+            <p>
+                <%= @recipe.prepare_mode %>
+            </p>
+            <p>
+            <%=  @recipe.duration %>
+            </p>
+            <p>
+                <%= pluralize(@recipe.portion,'Porção',' Porções') %>
+            </p>
+            <p>
+            <%=  @recipe.stuff %>
+            </p>
+            <p>
+                <%= number_to_currency(@recipe.cost) %>
+            </p>
+        </article>
+                
+        <%= link_to recipes_path, class:'btn btn-link' do %>
+            <i class="glyphicon glyphicon-home"> Receitas </i>
+        <% end %>
+
+        <%= link_to edit_recipe_path(@recipe) , class:'btn btn-link' do %>
+            <i class="glyphicon glyphicon-edit"> Editar </i>
+        <% end %>
+
+        <%= link_to recipe_path(@recipe), method: :delete, data: { confirm: "Deseja deletar esta receita?" } , class:'btn btn-link' do %>
+            <i class="glyphicon glyphicon-remove-sign"> Excluir </i>
+        <% end %>
+
+        <hr />
+
+        <%= link_to new_recipe_comment_path(@recipe), class:'btn btn-link' do %>
+            <i class="glyphicon glyphicon-plus"> Add Comentário </i>
+        <% end %>
+
+        <%= link_to recipe_comments_path(@recipe), class:'btn btn-link' do %>
+            <i class="glyphicon glyphicon-eye-open"> <%= pluralize(@recipe.comments.size, 'Comentário', 'Comentários') %> </i>
+        <% end %>
+
+    </div>
+    </div>
